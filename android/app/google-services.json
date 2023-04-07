@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "964452918007",
+    "project_id": "maps-5a24c",
+    "storage_bucket": "maps-5a24c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:964452918007:android:981bb49f3ffff761cca9f2",
+        "android_client_info": {
+          "package_name": "com.example.car_rental_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "964452918007-ssmfafbs36283p0h2hsuv01ril4ku7i3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDuVGa5p7pAjs8qeqtqIg952kIQbiwXnhU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "964452918007-ssmfafbs36283p0h2hsuv01ril4ku7i3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
