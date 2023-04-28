@@ -1,13 +1,16 @@
 import 'package:car_rental_app/contacts.dart';
-import 'package:car_rental_app/events.dart';
-import 'package:car_rental_app/notes.dart';
+
+
 import 'package:car_rental_app/notifications.dart';
 import 'package:car_rental_app/privacy_policy.dart';
 import 'package:car_rental_app/screens/bookings.dart';
 import 'package:car_rental_app/screens/car_detail.dart';
 import 'package:car_rental_app/screens/cars_overview.dart';
+import 'package:car_rental_app/screens/signin.dart';
 import 'package:car_rental_app/send_feedback.dart';
 import 'package:car_rental_app/settings.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
 import '../user_live_location.dart';
@@ -63,17 +66,19 @@ class MainDrawer extends StatelessWidget {
             ),
           ),
           ListTile(
-            leading: Icon(Icons.dashboard),
-            title: Text(
-              'Dashboard',
-              style: TextStyle(
-                fontSize: 18,
+              leading: Icon(Icons.dashboard),
+              title: Text(
+                'Dashboard',
+                style: TextStyle(
+                  fontSize: 18,
+                ),
               ),
-            ),
-            onTap: () {
-              Navigator.push(context, MaterialPageRoute(builder: ((context) => CarsOverviewScreen())));
-            }
-          ),
+              onTap: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: ((context) => CarsOverviewScreen())));
+              }),
           ListTile(
             leading: Icon(Icons.contacts),
             title: Text(
@@ -83,33 +88,12 @@ class MainDrawer extends StatelessWidget {
               ),
             ),
             onTap: () {
-              Navigator.push(context, MaterialPageRoute(builder: ((context) => ContactsPage())));
+              Navigator.push(context,
+                  MaterialPageRoute(builder: ((context) => ContactsPage())));
             },
           ),
-          ListTile(
-            leading: Icon(Icons.event),
-            title: Text(
-              'Events',
-              style: TextStyle(
-                fontSize: 18,
-              ),
-            ),
-             onTap: () {
-              Navigator.push(context, MaterialPageRoute(builder: ((context) => EventsPage())));
-            },
-          ),
-          ListTile(
-            leading: Icon(Icons.notes),
-            title: Text(
-              'Notes',
-              style: TextStyle(
-                fontSize: 18,
-              ),
-            ),
-             onTap: () {
-              Navigator.push(context, MaterialPageRoute(builder: ((context) => NotesPage())));
-            },
-          ),
+        
+          
           
           ListTile(
             leading: Icon(Icons.notifications),
@@ -119,8 +103,11 @@ class MainDrawer extends StatelessWidget {
                 fontSize: 18,
               ),
             ),
-             onTap: () {
-              Navigator.push(context, MaterialPageRoute(builder: ((context) => NotificationsPage())));
+            onTap: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: ((context) => NotificationsPage())));
             },
           ),
           ListTile(
@@ -131,11 +118,13 @@ class MainDrawer extends StatelessWidget {
                 fontSize: 18,
               ),
             ),
-             onTap: () {
-              Navigator.push(context, MaterialPageRoute(builder: ((context) => PrivacyPolicyPage())));
+            onTap: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: ((context) => PrivacyPolicyPage())));
             },
           ),
-
           ListTile(
             leading: Icon(Icons.feedback),
             title: Text(
@@ -144,11 +133,14 @@ class MainDrawer extends StatelessWidget {
                 fontSize: 18,
               ),
             ),
-             onTap: () {
-              Navigator.push(context, MaterialPageRoute(builder: ((context) => SendFeedbackPage())));
+            onTap: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: ((context) => SendFeedbackPage())));
             },
           ),
- ListTile(
+          ListTile(
             leading: Icon(Icons.settings),
             title: Text(
               'Settings',
@@ -156,8 +148,9 @@ class MainDrawer extends StatelessWidget {
                 fontSize: 18,
               ),
             ),
-             onTap: () {
-              Navigator.push(context, MaterialPageRoute(builder: ((context) => SettingsPage())));
+            onTap: () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: ((context) => SettingsPage())));
             },
           ),
           ListTile(
@@ -168,8 +161,26 @@ class MainDrawer extends StatelessWidget {
                 fontSize: 18,
               ),
             ),
-             onTap: () {
-              Navigator.push(context, MaterialPageRoute(builder: ((context) => UserLiveLocationPage())));
+            onTap: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: ((context) => UserLiveLocationPage())));
+            },
+          ),
+          ListTile(
+            leading: Icon(Icons.logout),
+            title: Text(
+              'Log Out',
+              style: TextStyle(
+                fontSize: 18,
+              ),
+            ),
+            onTap: () {
+              FirebaseAuth.instance.signOut().then((value) {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: ((context) => SignInScreen())));
+              });
             },
           ),
         ],

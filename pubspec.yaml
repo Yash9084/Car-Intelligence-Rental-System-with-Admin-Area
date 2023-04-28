@@ -42,6 +42,9 @@ dependencies:
   cloud_firestore: ^4.5.0
   firebase_core: ^2.9.0
   permission_handler: ^10.2.0
+  firebase_auth: ^4.4.2
+  flutter_stripe: ^9.1.1
+  http: ^0.13.5
 
 dev_dependencies:
   flutter_test:
@@ -69,12 +72,12 @@ flutter:
   assets: 
       - assets/images/my-passport-photo.jpg
       - assets/images/rent_car.jpg
-      - car1.jpg
-      - car2.jpg
-      - car3.jpg
-      - car4.jpg
-      - car5.jpg
-      - car6.jpg
+      - assets/car1.jpg
+      - assets/car2.jpg
+      - assets/car3.jpg
+      - assets/car4.jpg
+      - assets/car5.jpg
+      - assets/car6.jpg
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

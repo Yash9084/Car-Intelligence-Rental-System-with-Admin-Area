@@ -15,7 +15,7 @@ class _PrivacyPolicyPageState extends State<PrivacyPolicyPage> {
         centerTitle: true,
       ),
       body: Center(
-        child: ElevatedButton(
+            child: ElevatedButton(
           style: ElevatedButton.styleFrom(
             padding: EdgeInsets.all(20),
           ),
@@ -27,7 +27,7 @@ class _PrivacyPolicyPageState extends State<PrivacyPolicyPage> {
             style: TextStyle(fontSize: 20),
           ),
         ),
-      ),
+  ),
     );
   }
 }

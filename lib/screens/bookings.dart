@@ -1,5 +1,7 @@
 
 
+import 'package:car_rental_app/screens/cars_overview.dart';
+import 'package:car_rental_app/screens/payment.dart';
 import 'package:flutter/material.dart';
 import 'package:car_rental_app/screens/bookings.dart';
 
@@ -16,9 +18,11 @@ class Bookings extends StatelessWidget {
           style: ElevatedButton.styleFrom(
             padding: EdgeInsets.all(20),
           ),
-          onPressed: () {},
+          onPressed: () {
+            Navigator.push(context, MaterialPageRoute(builder: (context) => Payment(),));
+          },
           child: Text(
-            'Last Screen',
+            'Pay Now',
             style: TextStyle(fontSize: 20),
           ),
         ),

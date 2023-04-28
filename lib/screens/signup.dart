@@ -1,4 +1,5 @@
 import 'package:car_rental_app/screens/cars_overview.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 import '../reusable_wiidgets.dart/reusable_widget.dart';
@@ -22,21 +23,22 @@ class _SignUpScreenState extends State<SignUpScreen> {
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
-        title: const Text("Sign Up", style: TextStyle(
-          fontSize: 24,fontWeight: FontWeight.bold
-        ),
+        title: const Text(
+          "Sign Up",
+          style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
         ),
       ),
-    body: Container(
+      body: Container(
           decoration: BoxDecoration(
             gradient: LinearGradient(colors: [
               hexStringToColor("CB2B93"),
               hexStringToColor("9546C4"),
               hexStringToColor("5E61F4"),
-            ], begin: Alignment.topCenter, end: Alignment.bottomCenter),),
-             child: SingleChildScrollView(
+            ], begin: Alignment.topCenter, end: Alignment.bottomCenter),
+          ),
+          child: SingleChildScrollView(
               child: Padding(
-            padding: EdgeInsets.fromLTRB(20,220,20,250),
+            padding: EdgeInsets.fromLTRB(20, 220, 20, 250),
             child: Column(
               children: <Widget>[
                 const SizedBox(
@@ -49,23 +51,37 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   width: double.infinity,
                   height: 20,
                 ),
-                reusableTextField("Enter Username", Icons.person_outline, true,
+                reusableTextField("Enter Email-id", Icons.person_outline, false,
                     _emailTextController),
                 SizedBox(
                   width: double.infinity,
                   height: 20,
-                ),reusableTextField("Enter Password", Icons.lock_outline, true,
+                ),
+                reusableTextField("Enter Password", Icons.lock_outline, true,
                     _passwordTextController),
-                     SizedBox(
+                SizedBox(
                   width: double.infinity,
                   height: 20,
                 ),
                 signInSignUpButton(context, false, () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => CarsOverviewScreen(),));
+                  FirebaseAuth.instance
+                      .createUserWithEmailAndPassword(
+                          email: _emailTextController.text,
+                          password: _passwordTextController.text)
+                      .then((value) {
+                        print("Created New Account");
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => CarsOverviewScreen(),
+                        ));
+                  }).onError((error, stackTrace) {
+                    print("Error ${error.toString()}");
+                  });
                 }),
               ],
-          ), 
-              ))),
+            ),
+          ))),
     );
   }
 }
